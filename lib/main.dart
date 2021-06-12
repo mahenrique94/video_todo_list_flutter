@@ -22,7 +22,7 @@ class MyHome extends StatefulWidget {
 class MyHomeState extends State<MyHome> {
   final TextEditingController taskController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  List<String> _tasks = List();
+  List<String> _tasks = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,18 +43,18 @@ class MyHomeState extends State<MyHome> {
                       child: TextFormField(
                         controller: taskController,
                         style: TextStyle(
-                          fontSize: 32,
-                          color: Colors.black87
+                            fontSize: 32,
+                            color: Colors.black87
                         ),
                         decoration: InputDecoration(
-                          hintText: 'Type a new task here...',
-                          hintStyle: TextStyle(
-                            fontSize: 20,
-                          )
+                            hintText: 'Type a new task here...',
+                            hintStyle: TextStyle(
+                              fontSize: 20,
+                            )
                         ),
                         keyboardType: TextInputType.text,
                         validator: (value) {
-                          if (value.trim().isEmpty) {
+                          if (value!.trim().isEmpty) {
                             return 'Task field it\'s required';
                           }
                           return null;
@@ -67,7 +67,7 @@ class MyHomeState extends State<MyHome> {
                         child: Text('Add', style: TextStyle(fontSize: 20),),
                         onPressed: () {
                           debugPrint('CLIQUEI!!!');
-                          if (_formKey.currentState.validate()) {
+                          if (_formKey.currentState!.validate()) {
                             setState(() {
                               _tasks.add(taskController.text);
                             });
